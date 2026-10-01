@@ -1,0 +1,453 @@
+/* ======================================================
+   ARSHIMALA - RESPONSIVE DESIGN
+====================================================== */
+
+
+/* ======================================================
+   TABLET / SMALL LAPTOP
+====================================================== */
+
+@media (max-width: 900px) {
+
+    .container {
+        width: min(92%, 760px);
+    }
+
+    /* HEADER */
+
+    .navbar {
+        min-height: 76px;
+    }
+
+    .nav-links {
+        gap: 16px;
+    }
+
+    .brand-logo img {
+        width: 135px;
+        max-height: 54px;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 600px;
+    }
+
+    .hero-content {
+        padding: 90px 0;
+    }
+
+    .hero h1 {
+        font-size: 60px;
+    }
+
+    .hero-text {
+        max-width: 480px;
+    }
+
+
+    /* INTRO */
+
+    .intro {
+        gap: 45px;
+    }
+
+
+    /* PRODUCTS */
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .product-image {
+        height: 400px;
+    }
+
+
+    /* PRODUCT DETAILS */
+
+    .product-detail {
+        gap: 40px;
+    }
+
+    .detail-info h1 {
+        font-size: 43px;
+    }
+
+
+    /* BRAND TAGLINE */
+
+    .hero-tagline {
+        max-width: 500px;
+    }
+
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 650px) {
+
+    .container {
+        width: 90%;
+    }
+
+
+    /* TOPBAR */
+
+    .topbar {
+        font-size: 9px;
+        padding: 7px 5px;
+    }
+
+
+    /* HEADER */
+
+    .navbar {
+        min-height: 70px;
+    }
+
+    .brand-logo img {
+        width: 125px;
+        max-height: 50px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+
+        background: #fff;
+
+        border-top: 1px solid #eee;
+
+        padding: 20px;
+
+        flex-direction: column;
+        align-items: flex-start;
+
+        gap: 18px;
+
+        box-shadow: 0 10px 25px rgba(0, 0, 0, .06);
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+
+    /* HERO */
+
+    .hero {
+        min-height: 560px;
+    }
+
+    .hero-content {
+        padding: 80px 0;
+    }
+
+    .hero h1 {
+        font-size: 50px;
+        line-height: 1.05;
+    }
+
+    .hero-text {
+        font-size: 12px;
+        line-height: 1.8;
+    }
+
+    .hero-tagline {
+        margin: -8px 0 24px;
+        font-size: 13px;
+        line-height: 1.7;
+        max-width: 100%;
+    }
+
+    .hero-actions {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+
+    /* INTRO */
+
+    .intro {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        padding: 70px 0;
+    }
+
+    .intro h2,
+    .section-head h2 {
+        font-size: 34px;
+    }
+
+
+    /* PRODUCT GRID */
+
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .product-image {
+        height: 260px;
+    }
+
+    .product-info {
+        display: block;
+    }
+
+    .product-info strong {
+        display: block;
+        margin-top: 6px;
+    }
+
+    .product-info h3 {
+        font-size: 16px;
+    }
+
+    .add-btn {
+        font-size: 10px;
+    }
+
+
+    /* BANNER */
+
+    .banner-section {
+        padding: 65px 0;
+    }
+
+    .promo {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+
+    .promo h2 {
+        font-size: 42px;
+    }
+
+
+    /* ABOUT */
+
+    .about {
+        padding: 70px 0;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+
+    /* PAGE TITLE */
+
+    .page-title {
+        padding: 55px 0 45px;
+    }
+
+    .page-title h1 {
+        font-size: 45px;
+    }
+
+
+    /* TOOLBAR */
+
+    .toolbar {
+        flex-direction: column;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+
+    /* PRODUCT DETAILS */
+
+    .product-detail {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        padding: 40px 0 70px;
+    }
+
+    .detail-image,
+    .detail-image img {
+        min-height: 470px;
+    }
+
+    .detail-info h1 {
+        font-size: 40px;
+    }
+
+
+    /* CART */
+
+    .cart-item {
+        grid-template-columns: 75px 1fr;
+        gap: 14px;
+    }
+
+    .cart-item img {
+        width: 75px;
+        height: 100px;
+    }
+
+    .remove {
+        grid-column: 2;
+        text-align: left;
+    }
+
+    .cart-summary {
+        max-width: none;
+    }
+
+
+    /* CHECKOUT */
+
+    .checkout-form {
+        width: 100%;
+    }
+
+    .checkout-form input,
+    .checkout-form textarea {
+        width: 100%;
+    }
+
+
+    /* RELATED PRODUCTS */
+
+    .related-products-section {
+        padding: 60px 0;
+    }
+
+
+    /* FOOTER BRAND */
+
+    .footer-brand {
+        align-items: flex-start;
+    }
+
+}
+
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
+
+@media (max-width: 400px) {
+
+    .container {
+        width: 92%;
+    }
+
+
+    /* HEADER */
+
+    .brand-logo img {
+        width: 112px;
+        max-height: 46px;
+    }
+
+
+    /* HERO */
+
+    .hero h1 {
+        font-size: 43px;
+    }
+
+    .hero-tagline {
+        font-size: 12px;
+    }
+
+
+    /* PRODUCTS */
+
+    .product-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .product-image {
+        height: 225px;
+    }
+
+    .product-info h3 {
+        font-size: 14px;
+    }
+
+    .product-info strong {
+        font-size: 13px;
+    }
+
+
+    /* PAGE TITLE */
+
+    .page-title h1 {
+        font-size: 38px;
+    }
+
+
+    /* PRODUCT DETAILS */
+
+    .detail-image,
+    .detail-image img {
+        min-height: 400px;
+    }
+
+    .detail-info h1 {
+        font-size: 34px;
+    }
+
+
+    /* CART */
+
+    .cart-item {
+        grid-template-columns: 65px 1fr;
+    }
+
+    .cart-item img {
+        width: 65px;
+        height: 90px;
+    }
+
+}
+
+
+/* ======================================================
+   EXTRA SMALL DEVICES
+====================================================== */
+
+@media (max-width: 340px) {
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .product-grid {
+        gap: 8px;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    .brand-logo img {
+        width: 105px;
+    }
+
+}

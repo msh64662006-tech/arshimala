@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Arshimala Admin — আরশিমালা</title>
+
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- Admin CSS -->
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- ==================================================
+         LOGIN SCREEN
+    =================================================== -->
+
+    <div
+        id="loginScreen"
+        class="login-screen"
+    >
+
+        <div class="login-box">
+
+            <div class="admin-logo">
+
+                Arshimala
+
+                <small>
+                    আরশিমালা
+                </small>
+
+            </div>
+
+
+            <p class="eyebrow">
+                ADMIN PANEL
+            </p>
+
+
+            <h1>
+                Welcome back
+            </h1>
+
+
+            <p class="muted">
+                Sign in to manage your Arshimala products.
+            </p>
+
+
+            <input
+                id="adminEmail"
+                type="email"
+                placeholder="Admin Email"
+                autocomplete="email"
+                required
+            >
+
+
+            <input
+                id="adminPassword"
+                type="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+            >
+
+
+            <button
+                type="button"
+                class="admin-btn"
+                onclick="login()"
+            >
+                Login
+            </button>
+
+
+            <p
+                id="loginError"
+                class="error"
+            ></p>
+
+
+            <small class="hint">
+                Login with your Firebase Admin account
+            </small>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADMIN APPLICATION
+    =================================================== -->
+
+    <div
+        id="adminApp"
+        class="admin-app"
+        hidden
+    >
+
+
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+
+        <header class="admin-header">
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+                Arshimala
+
+                <small>
+                    আরশিমালা
+                </small>
+
+            </a>
+
+
+            <div class="header-actions">
+
+                <a
+                    href="index.html"
+                    target="_blank"
+                    class="view-site"
+                >
+                    View Website ↗
+                </a>
+
+
+                <button
+                    type="button"
+                    class="logout"
+                    onclick="logout()"
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==================================================
+             ADMIN LAYOUT
+        =================================================== -->
+
+        <div class="admin-layout">
+
+
+            <!-- ==================================================
+                 SIDEBAR
+            =================================================== -->
+
+            <aside class="admin-sidebar">
+
+                <div class="side-title">
+                    MANAGEMENT
+                </div>
+
+
+                <button
+                    type="button"
+                    class="side-link active"
+                    onclick="showSection('dashboard')"
+                >
+                    ▦ Dashboard
+                </button>
+
+
+                <button
+                    type="button"
+                    class="side-link"
+                    onclick="showSection('products')"
+                >
+                    ◇ Products
+                </button>
+
+
+                <button
+                    type="button"
+                    class="side-link"
+                    onclick="showSection('add')"
+                >
+                    ＋ Add Product
+                </button>
+
+            </aside>
+
+
+
+            <!-- ==================================================
+                 MAIN CONTENT
+            =================================================== -->
+
+            <main class="admin-main">
+
+
+                <!-- ==================================================
+                     DASHBOARD
+                =================================================== -->
+
+                <section id="dashboardSection">
+
+                    <p class="eyebrow">
+                        OVERVIEW
+                    </p>
+
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+
+                    <div class="stats">
+
+
+                        <div class="stat-card">
+
+                            <span>
+                                Total Products
+                            </span>
+
+                            <strong id="totalProducts">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span>
+                                Featured
+                            </span>
+
+                            <strong id="featuredProducts">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="stat-card">
+
+                            <span>
+                                Available
+                            </span>
+
+                            <strong id="availableProducts">
+                                0
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Quick Actions -->
+
+                    <div class="admin-card">
+
+                        <h2>
+                            Quick Actions
+                        </h2>
+
+
+                        <div class="quick">
+
+                            <button
+                                type="button"
+                                onclick="showSection('add')"
+                            >
+                                ＋ Add New Product
+                            </button>
+
+
+                            <button
+                                type="button"
+                                onclick="showSection('products')"
+                            >
+                                ◇ Manage Products
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     PRODUCTS SECTION
+                =================================================== -->
+
+                <section
+                    id="productsSection"
+                    hidden
+                >
+
+
+                    <div class="section-title">
+
+                        <div>
+
+                            <p class="eyebrow">
+                                CATALOG
+                            </p>
+
+
+                            <h1>
+                                Products
+                            </h1>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="admin-btn"
+                            onclick="showSection('add')"
+                        >
+                            ＋ Add Product
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- ==================================================
+                         SEARCH + CATEGORY + AVAILABILITY FILTER
+                    =================================================== -->
+
+                    <div class="admin-filters">
+
+
+                        <input
+                            type="text"
+                            id="adminSearch"
+                            placeholder="Search products..."
+                            autocomplete="off"
+                        >
+
+
+                        <select id="adminCategoryFilter">
+
+                            <option value="all">
+                                All Categories
+                            </option>
+
+
+                            <option value="Three Pis">
+                                Three Pis
+                            </option>
+
+
+                            <option value="Tops">
+                                Tops
+                            </option>
+
+
+                            <option value="Kaftan">
+                                Kaftan
+                            </option>
+
+
+                            <option value="Gaon">
+                                Gaon
+                            </option>
+
+
+                            <option value="Semi Long Gaon">
+                                Semi Long Gaon
+                            </option>
+
+
+                            <option value="Kurti">
+                                Kurti
+                            </option>
+
+                        </select>
+
+
+                        <select id="availabilityFilter">
+
+                            <option value="">
+                                All Products
+                            </option>
+
+
+                            <option value="available">
+                                Available
+                            </option>
+
+
+                            <option value="unavailable">
+                                Unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <!-- Product List -->
+
+                    <div
+                        id="adminProductList"
+                        class="admin-product-list"
+                    >
+
+                        <!-- Products will load here -->
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ==================================================
+                     ADD / EDIT PRODUCT
+                =================================================== -->
+
+                <section
+                    id="addSection"
+                    hidden
+                >
+
+
+                    <p class="eyebrow">
+                        CATALOG
+                    </p>
+
+
+                    <h1 id="formTitle">
+                        Add Product
+                    </h1>
+
+
+
+                    <!-- Product Form -->
+
+                    <form
+                        id="productForm"
+                        class="product-form"
+                    >
+
+
+                        <!-- Edit ID -->
+
+                        <input
+                            type="hidden"
+                            id="editId"
+                        >
+
+
+
+                        <!-- Product Name -->
+
+                        <label>
+
+                            Product Name
+
+
+                            <input
+                                id="pName"
+                                type="text"
+                                required
+                                placeholder="e.g. Elegant Floral Three Pis"
+                            >
+
+                        </label>
+
+
+
+                        <!-- Category -->
+
+                        <label>
+
+                            Category
+
+
+                            <select
+                                id="pCategory"
+                                required
+                            >
+
+
+                                <option value="Three Pis">
+                                    Three Pis
+                                </option>
+
+
+                                <option value="Tops">
+                                    Tops
+                                </option>
+
+
+                                <option value="Kaftan">
+                                    Kaftan
+                                </option>
+
+
+                                <option value="Gaon">
+                                    Gaon
+                                </option>
+
+
+                                <option value="Semi Long Gaon">
+                                    Semi Long Gaon
+                                </option>
+
+
+                                <option value="Kurti">
+                                    Kurti
+                                </option>
+
+
+                            </select>
+
+                        </label>
+
+
+
+                        <!-- Price -->
+
+                        <label>
+
+                            Price (৳)
+
+
+                            <input
+                                id="pPrice"
+                                type="number"
+                                min="0"
+                                required
+                                placeholder="1990"
+                            >
+
+                        </label>
+
+
+
+                        <!-- Description -->
+
+                        <label>
+
+                            Description
+
+
+                            <textarea
+                                id="pDescription"
+                                rows="5"
+                                placeholder="Write a short product description..."
+                            ></textarea>
+
+                        </label>
+
+
+
+                        <!-- Product Image -->
+
+                        <label>
+
+                            Product Image
+
+
+                            <input
+                                id="pImageFile"
+                                type="file"
+                                accept="image/*"
+                            >
+
+
+                            <small>
+                                Choose a product image from your computer.
+                            </small>
+
+                        </label>
+
+
+
+                        <!-- Image Preview -->
+
+                        <div
+                            id="imagePreview"
+                            class="image-preview"
+                        ></div>
+
+
+
+                        <!-- Product Options -->
+
+                        <div class="checks">
+
+
+                            <label class="check">
+
+                                <input
+                                    id="pFeatured"
+                                    type="checkbox"
+                                >
+
+
+                                <span>
+                                    Featured Product
+                                </span>
+
+                            </label>
+
+
+
+                            <label class="check">
+
+                                <input
+                                    id="pAvailable"
+                                    type="checkbox"
+                                    checked
+                                >
+
+
+                                <span>
+                                    Available
+                                </span>
+
+                            </label>
+
+
+                        </div>
+
+
+
+                        <!-- Form Actions -->
+
+                        <div class="form-actions">
+
+
+                            <button
+                                type="submit"
+                                class="admin-btn"
+                            >
+                                Save Product
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="cancel-btn"
+                                onclick="resetForm(); showSection('products')"
+                            >
+                                Cancel
+                            </button>
+
+
+                        </div>
+
+                    </form>
+
+                </section>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         ADMIN JAVASCRIPT
+    =================================================== -->
+
+    <script
+        type="module"
+        src="js/admin.js"
+    ></script>
+
+
+</body>
+
+</html>

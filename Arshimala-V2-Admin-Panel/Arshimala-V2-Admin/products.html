@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Collection — Arshimala</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="site-header">
+
+        <div class="topbar">
+            Free delivery on selected orders • Shop with Arshimala
+        </div>
+
+        <nav class="navbar container">
+
+            <a class="brand" href="index.html">
+                <span>Arshimala</span>
+                <small>আরশিমালা</small>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+            >
+                ☰
+            </button>
+
+            <div
+                class="nav-links"
+                id="navLinks"
+            >
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a
+                    class="active"
+                    href="products.html"
+                >
+                    Collection
+                </a>
+
+                <a href="index.html#about">
+                    About
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <a
+                    class="cart-link"
+                    href="cart.html"
+                >
+                    Cart
+                    <b id="cartCount">0</b>
+                </a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN
+    ========================== -->
+
+    <main>
+
+        <!-- Page Title -->
+
+        <section class="page-title">
+
+            <div class="container">
+
+                <p class="eyebrow">
+                    ARSHIMALA COLLECTION
+                </p>
+
+                <h1>
+                    Three-Piece
+                </h1>
+
+                <p>
+                    Explore our latest designs.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Products -->
+
+        <section class="products-page container">
+
+            <!-- Toolbar -->
+
+            <div class="toolbar">
+
+                <div class="search-box">
+
+                    <span>⌕</span>
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Search collection..."
+                    >
+
+                </div>
+
+
+                <select id="sortSelect">
+
+                    <option value="default">
+                        Sort by
+                    </option>
+
+                    <option value="low">
+                        Price: Low to High
+                    </option>
+
+                    <option value="high">
+                        Price: High to Low
+                    </option>
+
+                    <option value="new">
+                        Newest
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- Loading -->
+
+            <div
+                id="loadingState"
+                class="empty"
+            >
+                Loading collection...
+            </div>
+
+
+            <!-- Product Grid -->
+
+            <div
+                class="product-grid"
+                id="productGrid"
+            ></div>
+
+
+            <!-- Empty -->
+
+            <p
+                class="empty"
+                id="emptyState"
+                hidden
+            >
+                No products found.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer id="contact">
+
+        <div class="container footer-grid">
+
+            <div>
+
+                <div class="brand footer-brand">
+
+                    <span>
+                        Arshimala
+                    </span>
+
+                    <small>
+                        আরশিমালা
+                    </small>
+
+                </div>
+
+                <p>
+                    Elegant three-piece fashion for every beautiful moment.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Quick Links
+                </h4>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="index.html#about">
+                    About Us
+                </a>
+
+                <a href="products.html">
+                    Collection
+                </a>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Order
+                </h4>
+
+                <p>
+                    Order directly through WhatsApp.
+                </p>
+
+                <!-- Change this number later -->
+                <a
+                    class="footer-wa"
+                    href="https://wa.me/8801000000000"
+                    target="_blank"
+                    rel="noopener"
+                >
+                    WhatsApp Us
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 Arshimala — আরশিমালা.
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         FIREBASE PRODUCTS
+    ========================== -->
+
+    <script type="module">
+
+        import { getProducts } from "./js/products.js";
+
+
+        const productGrid =
+            document.getElementById("productGrid");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const loadingState =
+            document.getElementById("loadingState");
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        const sortSelect =
+            document.getElementById("sortSelect");
+
+
+        let allProducts = [];
+
+
+        // ==========================================
+        // ESCAPE HTML
+        // ==========================================
+
+        function escapeHTML(value) {
+
+            return String(value || "")
+                .replaceAll("&", "&amp;")
+                .replaceAll("<", "&lt;")
+                .replaceAll(">", "&gt;")
+                .replaceAll('"', "&quot;")
+                .replaceAll("'", "&#039;");
+
+        }
+
+
+        // ==========================================
+        // LOAD PRODUCTS
+        // ==========================================
+
+        async function loadProducts() {
+
+            loadingState.hidden = false;
+
+            productGrid.innerHTML = "";
+
+            emptyState.hidden = true;
+
+
+            try {
+
+                const products =
+                    await getProducts();
+
+
+                // Only available products
+
+                allProducts =
+                    products.filter(
+                        product =>
+                            product.available !== false
+                    );
+
+
+                renderProducts(allProducts);
+
+
+            } catch (error) {
+
+                console.error(
+                    "Products loading error:",
+                    error
+                );
+
+                allProducts = [];
+
+                productGrid.innerHTML = "";
+
+                emptyState.textContent =
+                    "Unable to load products.";
+
+                emptyState.hidden = false;
+
+            }
+
+
+            loadingState.hidden = true;
+
+        }
+
+
+        // ==========================================
+        // RENDER PRODUCTS
+        // ==========================================
+
+        function renderProducts(products) {
+
+            productGrid.innerHTML = "";
+
+
+            if (!products.length) {
+
+                emptyState.textContent =
+                    "No products found.";
+
+                emptyState.hidden = false;
+
+                return;
+
+            }
+
+
+            emptyState.hidden = true;
+
+
+            products.forEach(product => {
+
+                const card =
+                    document.createElement("article");
+
+                card.className =
+                    "product-card";
+
+
+                const image =
+                    product.image ||
+                    "https://via.placeholder.com/600x750?text=Arshimala";
+
+
+                const featuredBadge =
+                    product.featured
+                        ? `<span class="badge">Featured</span>`
+                        : "";
+
+
+                card.innerHTML = `
+
+                    <a
+                        class="product-image"
+                        href="product.html?id=${encodeURIComponent(product.id)}"
+                    >
+
+                        <img
+                            src="${image}"
+                            alt="${escapeHTML(product.name)}"
+                            loading="lazy"
+                        >
+
+                        ${featuredBadge}
+
+                    </a>
+
+
+                    <div class="product-info">
+
+                        <p class="product-category">
+                            ${escapeHTML(product.category)}
+                        </p>
+
+
+                        <h3>
+
+                            <a
+                                href="product.html?id=${encodeURIComponent(product.id)}"
+                            >
+                                ${escapeHTML(product.name)}
+                            </a>
+
+                        </h3>
+
+
+                        <div class="product-bottom">
+
+                            <strong class="product-price">
+                                ৳${Number(product.price || 0).toLocaleString("en-BD")}
+                            </strong>
+
+
+                            <a
+                                class="product-view"
+                                href="product.html?id=${encodeURIComponent(product.id)}"
+                            >
+                                View Details
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                productGrid.appendChild(card);
+
+            });
+
+        }
+
+
+        // ==========================================
+        // SEARCH + SORT
+        // ==========================================
+
+        function filterAndSort() {
+
+            const search =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+
+            let filtered =
+                allProducts.filter(product => {
+
+                    const name =
+                        String(product.name || "")
+                            .toLowerCase();
+
+                    const category =
+                        String(product.category || "")
+                            .toLowerCase();
+
+                    const description =
+                        String(product.description || "")
+                            .toLowerCase();
+
+
+                    return (
+                        name.includes(search) ||
+                        category.includes(search) ||
+                        description.includes(search)
+                    );
+
+                });
+
+
+            const sort =
+                sortSelect.value;
+
+
+            if (sort === "low") {
+
+                filtered.sort(
+                    (a, b) =>
+                        Number(a.price || 0) -
+                        Number(b.price || 0)
+                );
+
+            }
+
+
+            if (sort === "high") {
+
+                filtered.sort(
+                    (a, b) =>
+                        Number(b.price || 0) -
+                        Number(a.price || 0)
+                );
+
+            }
+
+
+            if (sort === "new") {
+
+                filtered.sort((a, b) => {
+
+                    const aTime =
+                        a.createdAt?.seconds || 0;
+
+                    const bTime =
+                        b.createdAt?.seconds || 0;
+
+                    return bTime - aTime;
+
+                });
+
+            }
+
+
+            renderProducts(filtered);
+
+        }
+
+
+        searchInput.addEventListener(
+            "input",
+            filterAndSort
+        );
+
+
+        sortSelect.addEventListener(
+            "change",
+            filterAndSort
+        );
+
+
+        // Start
+
+        loadProducts();
+
+    </script>
+
+
+    <!-- Existing App JS -->
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
